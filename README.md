@@ -4,6 +4,17 @@
 
 This is a modern MERN-stack (without MongoDB for simplicity, but easily addable) application that utilizes Google's Gemini AI to analyze job descriptions and optimize resumes. It also uses Puppeteer to generate pixel-perfect PDFs from the React components.
 
+## Features
+
+- AI-based Resume Optimization
+- ATS Score Calculation
+- Job Description Keyword Extraction
+- Resume Rewrite using Gemini API
+- Real-time Resume Preview
+- PDF Generation using Puppeteer
+- Clean and Responsive UI (Tailwind CSS)
+
+
 - **Frontend**: React, Vite, Tailwind CSS, Axios, Lucide React
 - **Backend**: Node.js, Express, @google/genai, Puppeteer, CORS, dotenv
 
