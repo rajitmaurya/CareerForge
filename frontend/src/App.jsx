@@ -5,7 +5,8 @@ import ResumeForm from './components/ResumeForm';
 import ResumePreview from './components/ResumePreview';
 import ATSScore from './components/ATSScore';
 import Dashboard from './components/Dashboard';
-import { Loader2, FileDown, Sparkles, Save, LayoutDashboard, FileText } from 'lucide-react';
+import AuthModal from './components/AuthModal';
+import { Loader2, FileDown, Sparkles, Save, LayoutDashboard, FileText, LogOut } from 'lucide-react';
 
 function App() {
   const [jd, setJd] = useState('');
@@ -21,6 +22,9 @@ function App() {
   const [loadingStep, setLoadingStep] = useState('');
   const [showDashboard, setShowDashboard] = useState(false);
   const [savedResumes, setSavedResumes] = useState([]);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [pendingAction, setPendingAction] = useState(null);
 
   useEffect(() => {
     if (showDashboard) {
@@ -38,6 +42,11 @@ function App() {
   };
 
   const handleSaveResume = async () => {
+    if (!user) {
+      setPendingAction('save');
+      setShowAuthModal(true);
+      return;
+    }
     if (!resumeData.personalInfo.name) {
       alert('Please fill out at least your name before saving.');
       return;
@@ -92,6 +101,11 @@ function App() {
   };
 
   const handleDownloadPDF = async () => {
+    if (!user) {
+      setPendingAction('download');
+      setShowAuthModal(true);
+      return;
+    }
     const element = document.getElementById('resume-preview-content');
     if (!element) return;
     
@@ -129,6 +143,23 @@ function App() {
     }
   };
 
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setShowAuthModal(false);
+    if (pendingAction === 'save') {
+      setTimeout(() => handleSaveResume(), 100);
+    } else if (pendingAction === 'download') {
+      setTimeout(() => handleDownloadPDF(), 100);
+    }
+    setPendingAction(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    setShowDashboard(false);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {/* Navbar */}
@@ -141,15 +172,31 @@ function App() {
             </h1>
           </div>
           <div className="flex items-center gap-4">
-            <button 
-              onClick={() => setShowDashboard(!showDashboard)}
-              className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 bg-slate-100 px-3 py-1.5 rounded-lg transition-colors"
-            >
-              {showDashboard ? <><FileText className="w-4 h-4" /> Editor</> : <><LayoutDashboard className="w-4 h-4" /> Dashboard</>}
-            </button>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 text-white flex items-center justify-center font-bold shadow-md">
-              R
-            </div>
+            {user ? (
+              <>
+                <button 
+                  onClick={() => setShowDashboard(!showDashboard)}
+                  className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 bg-slate-100 px-3 py-1.5 rounded-lg transition-colors"
+                >
+                  {showDashboard ? <><FileText className="w-4 h-4" /> Editor</> : <><LayoutDashboard className="w-4 h-4" /> Dashboard</>}
+                </button>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 text-white flex items-center justify-center font-bold shadow-md">
+                    {user.name ? user.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <button onClick={handleLogout} className="text-sm font-medium text-slate-400 hover:text-red-500 transition-colors" title="Logout">
+                    <LogOut className="w-5 h-5" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <button 
+                onClick={() => setShowAuthModal(true)}
+                className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-lg transition-colors shadow-sm"
+              >
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -251,6 +298,16 @@ function App() {
           </>
         )}
       </main>
+
+      {showAuthModal && (
+        <AuthModal 
+          onClose={() => {
+            setShowAuthModal(false);
+            setPendingAction(null);
+          }} 
+          onLoginSuccess={handleLoginSuccess} 
+        />
+      )}
     </div>
   );
 }

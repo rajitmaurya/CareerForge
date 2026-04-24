@@ -5,6 +5,7 @@ exports.saveResume = async (req, res) => {
     const { title, personalInfo, summary, experience, skills, jd, atsScore } = req.body;
     
     const newResume = new Resume({
+      userId: req.user._id,
       title,
       personalInfo,
       summary,
@@ -24,7 +25,7 @@ exports.saveResume = async (req, res) => {
 
 exports.getResumes = async (req, res) => {
   try {
-    const resumes = await Resume.find().sort({ createdAt: -1 });
+    const resumes = await Resume.find({ userId: req.user._id }).sort({ createdAt: -1 });
     res.json(resumes);
   } catch (error) {
     console.error('Error fetching resumes:', error);
