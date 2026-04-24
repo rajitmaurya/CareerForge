@@ -54,6 +54,7 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
                 <input
                   type="text"
                   required
+                  autoComplete="name"
                   className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -66,6 +67,7 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
               <input
                 type="email"
                 required
+                autoComplete="email"
                 className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -77,6 +79,7 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
               <input
                 type="password"
                 required
+                autoComplete={isLogin ? "current-password" : "new-password"}
                 className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
