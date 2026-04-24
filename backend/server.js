@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('CareerForge API is running...');
+});
+
 app.use('/api', apiRoutes);
 
 // Connect to MongoDB
