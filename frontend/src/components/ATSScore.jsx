@@ -20,7 +20,7 @@ const ATSScore = ({ score, keywords }) => {
   }
 
   return (
-    <div className={`rounded-xl border p-6 shadow-sm ${bgColor} ${borderColor}`}>
+    <div className={`rounded-xl border p-4 sm:p-6 shadow-sm ${bgColor} ${borderColor}`}>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Target className={`w-6 h-6 ${scoreColor}`} />

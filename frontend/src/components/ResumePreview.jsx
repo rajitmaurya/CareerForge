@@ -6,8 +6,7 @@ const ResumePreview = ({ data }) => {
   return (
     <div 
       id="resume-preview-content" 
-      className="bg-white p-8 w-full max-w-[210mm] shadow-lg border border-slate-200"
-      style={{ minHeight: '297mm' }}
+      className="bg-white p-4 sm:p-8 w-full max-w-[210mm] mx-auto shadow-lg border border-slate-200 min-h-[500px] sm:min-h-[297mm]"
     >
       {/* Header */}
       <header className="border-b-2 border-slate-800 pb-4 mb-6 text-center">

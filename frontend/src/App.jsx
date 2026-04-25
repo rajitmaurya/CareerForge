@@ -167,7 +167,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-blue-600" />
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+            <h1 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
               CareerForge Pro
             </h1>
           </div>
@@ -217,27 +217,27 @@ function App() {
         ) : (
           <>
             <div className="mb-8">
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">AI Resume Architect</h2>
-          <p className="mt-2 text-lg text-slate-600">Tailor your resume for any job description instantly.</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">AI Resume Architect</h2>
+          <p className="mt-2 text-base sm:text-lg text-slate-600">Tailor your resume for any job description instantly.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Inputs */}
           <div className="space-y-6">
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-              <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+              <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/50">
                 <h3 className="text-lg font-semibold text-slate-800">1. Target Role</h3>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <JDInput jd={jd} setJd={setJd} />
               </div>
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-              <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+              <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                 <h3 className="text-lg font-semibold text-slate-800">2. Your Details</h3>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <ResumeForm data={resumeData} onChange={setResumeData} />
               </div>
             </div>
@@ -277,7 +277,7 @@ function App() {
                     className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 hover:bg-slate-50 px-3 py-1.5 rounded-lg transition-colors"
                   >
                     <Save className="w-4 h-4" />
-                    Save
+                    <span className="hidden sm:inline">Save</span>
                   </button>
                   <button
                     onClick={handleDownloadPDF}
@@ -285,11 +285,11 @@ function App() {
                     className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors"
                   >
                     <FileDown className="w-4 h-4" />
-                    Download PDF
+                    <span className="hidden sm:inline">Download PDF</span>
                   </button>
                 </div>
               </div>
-              <div className="p-8 bg-slate-100 min-h-[600px] flex justify-center overflow-auto">
+              <div className="p-4 sm:p-8 bg-slate-100 min-h-[600px] flex justify-center overflow-auto">
                 <ResumePreview data={resumeData} />
               </div>
             </div>

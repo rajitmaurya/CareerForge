@@ -10,7 +10,7 @@ const Dashboard = ({ resumes, onLoadResume }) => {
       </div>
 
       {resumes.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center">
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 sm:p-12 text-center">
           <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
           <h3 className="text-xl font-medium text-slate-900 mb-2">No resumes saved yet</h3>
           <p className="text-slate-500">
@@ -21,7 +21,7 @@ const Dashboard = ({ resumes, onLoadResume }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {resumes.map((resume) => (
             <div key={resume._id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow group">
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-lg font-semibold text-slate-800 line-clamp-1" title={resume.title}>
                     {resume.title}

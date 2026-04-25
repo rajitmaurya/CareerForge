@@ -31,7 +31,7 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
-        <div className="flex justify-between items-center p-6 border-b border-slate-100">
+        <div className="flex justify-between items-center p-4 sm:p-6 border-b border-slate-100">
           <h2 className="text-xl font-bold text-slate-800">
             {isLogin ? 'Sign In' : 'Create Account'}
           </h2>
@@ -40,7 +40,7 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
           </button>
         </div>
         
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {error && (
             <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
               {error}
