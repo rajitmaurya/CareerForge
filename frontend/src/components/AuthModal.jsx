@@ -32,9 +32,16 @@ const AuthModal = ({ onClose, onLoginSuccess }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="flex justify-between items-center p-4 sm:p-6 border-b border-slate-100">
-          <h2 className="text-xl font-bold text-slate-800">
-            {isLogin ? 'Sign In' : 'Create Account'}
-          </h2>
+          <div>
+            <h2 className="text-xl font-bold text-slate-800">
+              {isLogin ? 'Welcome Back' : 'Create Your Account'}
+            </h2>
+            <p className="mt-1 text-sm text-slate-500">
+              {isLogin
+                ? 'Sign in to continue building your resume.'
+                : 'Create an account to save and download your resumes.'}
+            </p>
+          </div>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors">
             <X className="w-5 h-5" />
           </button>
