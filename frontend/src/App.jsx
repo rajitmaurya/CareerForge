@@ -6,6 +6,7 @@ import ResumePreview from './components/ResumePreview';
 import ATSScore from './components/ATSScore';
 import Dashboard from './components/Dashboard';
 import AuthModal from './components/AuthModal';
+import Footer from './components/Footer';
 import { Loader2, FileDown, Sparkles, Save, LayoutDashboard, FileText, LogOut } from 'lucide-react';
 
 function App() {
@@ -161,7 +162,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
       {/* Navbar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -201,7 +202,7 @@ function App() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {showDashboard ? (
           <Dashboard resumes={savedResumes} onLoadResume={(resume) => {
              setResumeData({
@@ -308,6 +309,7 @@ function App() {
           onLoginSuccess={handleLoginSuccess} 
         />
       )}
+      <Footer />
     </div>
   );
 }
